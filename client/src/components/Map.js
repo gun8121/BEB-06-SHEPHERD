@@ -13,7 +13,18 @@ const contractHx = "0x83BeE91BcfE9a8CE765EA47Be9F33f80B38de487"; // 고정
 const contract = new web3.eth.Contract(shepherdAbi, contractHx);
 
 // useEffect 
-// 
+// axios.post('http://localhost:8080/user/login', {signIn})
+// .then(function(res){
+//   let data = res.data;
+//   let nft = [];
+
+//   for ( let i = 0; i < data.length; i++ ) {
+//     let resultdata = {};
+//     if ( data[i].nft_id != null &&  data[i].img_url != null ) {
+//       resultdata["nft_id"] = data[i].nft_id;
+//       resultdata["img_url"] = data[i].img_url;
+//       nft.push(resultdata);
+//     }
 // const balanceAxios = axios.post('http://127.0.0.1:3001/tx/getTokenBalance', findWallet )
 
 const onMouseHover = async (e) =>{
@@ -26,10 +37,8 @@ const onMouseHover = async (e) =>{
     const findWallet = "0x" + entries[1][1].wallet;
     console.log(findWallet);
 
-    const findBalanceZ = await contract.methods.balanceOf(findWallet, 0).call();
-    const findBalanceX = await contract.methods.balanceOf(findWallet, 1).call();
-    console.log(findBalanceZ);
-    console.log(findBalanceX);
+    const balanceZX = axios.post('http://127.0.0.1:3001/map/mapBalance', {findWallet})
+      .then(function(res))
     //console.log(pathId[1].wallet);
     // data-html을 true로 설정해야 data-tip에서 html 태그를 적용할 수 있음
     pathId?.setAttribute('data-html', 'true')
